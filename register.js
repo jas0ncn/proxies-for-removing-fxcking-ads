@@ -3,7 +3,7 @@ const path = require('path')
 
 const rules = mapDir(path.join(__dirname, './rules'))
 
-module.exports = function filterByRequest (requestDetail, responseDetail) {
+module.exports = function * filterByRequest (requestDetail, responseDetail) {
     for (const rule of rules) {
         if (!rule.name || !rule.trigger || !rule.hook) {
             continue
