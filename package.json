@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node generateCert.js && anyproxy --web 2334 --intercept --port 2333 --rule ./main.js"
+    "start": "anyproxy --web 2334 --port 2333 --rule ./main.js --intercept"
   },
   "author": "",
   "license": "MIT",

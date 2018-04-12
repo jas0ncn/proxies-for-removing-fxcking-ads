@@ -16,6 +16,8 @@ RUN cd /tmp && \
 WORKDIR /opt/workdir
 COPY . /opt/workdir
 
+RUN node generateCert.js
+
 EXPOSE 2333
 
 CMD ["npm", "start"]
