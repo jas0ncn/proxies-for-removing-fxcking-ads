@@ -19,7 +19,9 @@ module.exports = {
             }
         
             const feed = body.data.filter(item => item.type === 'feed')
-            body,data = feed
+            body.data = feed
+
+            console.log(feed, newResponse)
 
             return { response: newResponse }
         }
