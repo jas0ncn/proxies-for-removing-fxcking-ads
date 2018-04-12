@@ -1,0 +1,11 @@
+{
+  "name": "proxy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "anyproxy --port 2333 --rule ./rules.js"
+  },
+  "author": "",
+  "license": "MIT"
+}
