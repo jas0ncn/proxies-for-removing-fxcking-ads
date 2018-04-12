@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "anyproxy --intercept --port 2333 --rule ./main.js"
+    "start": "node generateCert.js && anyproxy --intercept --port 2333 --rule ./main.js"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "anyproxy": "^4.0.6"
+    "anyproxy": "^4.0.6",
+    "co": "^4.6.0"
   }
 }
