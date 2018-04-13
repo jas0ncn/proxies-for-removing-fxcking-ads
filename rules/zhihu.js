@@ -6,8 +6,21 @@ const hooks = {
     async ['/topstory/recommend'] (requestDetail, responseDetail) {
         const newResponse = responseDetail.response;
         const rawBody = newResponse.body
-        let body
+        const [body, e] = tryCatch(JSON.parse(rawBody))
 
+        if (e) {
+            return e
+        }
+    
+        body.ad_info = {}
+
+        newResponse.body = JSON.stringify(body)
+
+        return { response: newResponse }
+    },
+    async ['/questions/:id/answers'] (requestDetail, responseDetail, params) {
+        const newResponse = responseDetail.response;
+        const rawBody = newResponse.body
         const [body, e] = tryCatch(JSON.parse(rawBody))
 
         if (e) {
@@ -15,14 +28,11 @@ const hooks = {
         }
     
         const feed = body.data.filter(item => item.type === 'feed')
-        body.data = feed
+        body.ads = feed
 
         newResponse.body = JSON.stringify(body)
 
         return { response: newResponse }
-    },
-    async ['/questions/:id/answers'] (requestDetail, responseDetail, params) {
-        console.log(params)
     }
 }
 
@@ -56,7 +66,7 @@ module.exports = {
         for (const p of pathnames) {
             if (isMatch(pathname, p)) {
                 const params = getParams(pathname, p)
-                return hooks[pathname](requestDetail, responseDetail, params)
+                return hooks[p](requestDetail, responseDetail, params)
             }
         }
     }
