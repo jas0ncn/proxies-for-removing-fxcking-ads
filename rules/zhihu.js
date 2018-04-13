@@ -33,6 +33,21 @@ const hooks = {
         newResponse.body = JSON.stringify(body)
 
         return { response: newResponse }
+    },
+    async ['/appview/api/v4/answers/:id/related-readings'] (requestDetail, responseDetail, params) {
+        const newResponse = responseDetail.response;
+        const rawBody = newResponse.body
+        const [body, e] = tryCatch(JSON.parse(rawBody))
+
+        if (e) {
+            return e
+        }
+    
+        body.data = []
+
+        newResponse.body = JSON.stringify(body)
+
+        return { response: newResponse }
     }
 }
 
