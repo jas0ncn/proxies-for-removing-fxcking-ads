@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "anyproxy": "^4.0.6",
-    "co": "^4.6.0"
+    "co": "^4.6.0",
+    "path-to-regexp": "^2.2.0"
   }
 }
