@@ -1,5 +1,3 @@
-const url = require('url')
-const pathToRegexp = require('path-to-regexp')
 const { tryCatch } = require('../libs/tryCatch')
 const groupMatcher = require('../libs/groupMatcher')
 
@@ -17,7 +15,8 @@ module.exports = groupMatcher(
             }
         
             const feed = body.data.filter(item => item.type === 'feed')
-            body.ads = feed
+            body.data = feed
+            body.ads = []
     
             newResponse.body = JSON.stringify(body)
     
@@ -77,6 +76,20 @@ module.exports = groupMatcher(
             }
     
             body.splash.ads = []
+    
+            newResponse.body = JSON.stringify(body)
+            return { response: newResponse }
+        },
+        async ['/launch'] (requestDetail, responseDetail, params) {
+            const newResponse = responseDetail.response;
+            const rawBody = newResponse.body
+            const [body, e] = tryCatch(JSON.parse(rawBody))
+    
+            if (e) {
+                return e
+            }
+    
+            body.launch_ads = []
     
             newResponse.body = JSON.stringify(body)
             return { response: newResponse }
