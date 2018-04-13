@@ -12,7 +12,8 @@ const hooks = {
             return e
         }
     
-        body.ad_info = {}
+        const feed = body.data.filter(item => item.type === 'feed')
+        body.ads = feed
 
         newResponse.body = JSON.stringify(body)
 
@@ -27,8 +28,7 @@ const hooks = {
             return e
         }
     
-        const feed = body.data.filter(item => item.type === 'feed')
-        body.ads = feed
+        body.ad_info = {}
 
         newResponse.body = JSON.stringify(body)
 
