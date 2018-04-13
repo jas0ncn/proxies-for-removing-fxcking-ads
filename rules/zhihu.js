@@ -30,7 +30,7 @@ const pathnames = Object.keys(hooks)
 
 const getParams = (url, template) => {
     const compiledTemplate = pathToRegexp.parse(template).filter(v => typeof v === 'object')
-    const execParamValues = pathToRegexp(template).exec(url)
+    const execParamValues = pathToRegexp(template).exec(url).slice(1)
     const params = {}
     
     execParamValues.forEach((value, idx) => {
