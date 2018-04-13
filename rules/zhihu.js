@@ -48,6 +48,20 @@ const hooks = {
         newResponse.body = JSON.stringify(body)
 
         return { response: newResponse }
+    },
+    async ['/answers/:id/comments/featured-comment-ad'] (requestDetail, responseDetail, params) {
+        const newResponse = responseDetail.response;
+        const rawBody = newResponse.body
+        const [body, e] = tryCatch(JSON.parse(rawBody))
+
+        if (e) {
+            return e
+        }
+
+        newResponse.body = '{"error": {"message": "\u6ca1\u6709\u627e\u5230\u5e7f\u544a\u4f4d", "code": 40402, "name": "PositionNotFoundException"}} '
+        newResponse.statusCode = 404
+
+        return { response: newResponse }
     }
 }
 
